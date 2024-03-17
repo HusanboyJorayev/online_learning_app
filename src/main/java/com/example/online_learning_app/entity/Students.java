@@ -18,8 +18,8 @@ public class Students {
     private Integer id;
     private String name;
     private String email;
-    private String password;
     private String status;
+    private String password;
     private String verificationCode;
     private String profileImage;
     private LocalDateTime createdAt;

@@ -42,6 +42,17 @@ public class AssigmentSubmissionsController implements AssigmentSubmissionsServi
     }
 
     @Override
+    @GetMapping("/universalSearch")
+    public ApiResponse<List<AssigmentSubmissionsDto>> universalSearch(@RequestParam(required = false) Integer id,
+                                                                      @RequestParam(required = false) Integer assigmentId,
+                                                                      @RequestParam(required = false) Integer studentId,
+                                                                      @RequestParam(required = false) String selectedOption,
+                                                                      @RequestParam(required = false) String textInput,
+                                                                      @RequestParam(required = false) String attachment) {
+        return this.assigmentSubmissionsServiceImpl.universalSearch(id, assigmentId, studentId, selectedOption, textInput, attachment);
+    }
+
+    @Override
     @GetMapping("/getAll")
     public ApiResponse<List<AssigmentSubmissionsDto>> getAll() {
         return this.assigmentSubmissionsServiceImpl.getAll();

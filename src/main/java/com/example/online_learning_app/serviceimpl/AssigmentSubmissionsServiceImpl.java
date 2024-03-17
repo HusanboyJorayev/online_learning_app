@@ -2,6 +2,7 @@ package com.example.online_learning_app.serviceimpl;
 
 import com.example.online_learning_app.dto.ApiResponse;
 import com.example.online_learning_app.dto.AssigmentSubmissionsDto;
+import com.example.online_learning_app.entity.AssigmentSubmissions;
 import com.example.online_learning_app.mapper.AssigmentSubmissionsMapper;
 import com.example.online_learning_app.repository.AssigmentSubmissionsRepository;
 import com.example.online_learning_app.service.AssigmentSubmissionsService;
@@ -83,6 +84,26 @@ public class AssigmentSubmissionsServiceImpl implements AssigmentSubmissionsServ
                 .success(true)
                 .message("Ok")
                 .data("deleted successfully")
+                .build();
+    }
+
+    @Override
+    public ApiResponse<List<AssigmentSubmissionsDto>> universalSearch(Integer id, Integer assigmentId,
+                                                                      Integer studentId, String selectedOption,
+                                                                      String textInput, String attachment) {
+
+        var submissionsList=this.assigmentSubmissionsRepository.universalSearch(id, assigmentId, studentId,
+                                                                                 selectedOption, textInput, attachment);
+        if (submissionsList.isEmpty()) {
+            return ApiResponse.<List<AssigmentSubmissionsDto>>builder()
+                    .code(-1)
+                    .message("They are not found")
+                    .build();
+        }
+        return ApiResponse.<List<AssigmentSubmissionsDto>>builder()
+                .success(true)
+                .message("Ok")
+                .data(submissionsList.stream().map(this.assigmentSubmissionsMapper::toDto).toList())
                 .build();
     }
 

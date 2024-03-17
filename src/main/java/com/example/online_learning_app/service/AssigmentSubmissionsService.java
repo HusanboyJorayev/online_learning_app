@@ -18,6 +18,9 @@ public interface AssigmentSubmissionsService {
     ApiResponse<String> update(AssigmentSubmissionsDto dto, Integer id);
 
     ApiResponse<String> delete(Integer id);
+    ApiResponse<List<AssigmentSubmissionsDto>> universalSearch(Integer id, Integer assigmentId,
+                                                               Integer studentId, String selectedOption,
+                                                               String textInput, String attachment);
 
     ApiResponse<List<AssigmentSubmissionsDto>> getAll();
 }

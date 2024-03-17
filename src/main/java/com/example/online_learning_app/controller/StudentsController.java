@@ -45,4 +45,14 @@ public class StudentsController implements StudentsService {
         return this.studentsServiceImpl.getAll();
     }
 
+    @Override
+    @GetMapping("/universalSearch")
+    public ApiResponse<List<StudentsDto>> universalSearch(@RequestParam(required = false) Integer id,
+                                                       @RequestParam(required = false) String name,
+                                                       @RequestParam(required = false) String email,
+                                                       @RequestParam(required = false) String status,
+                                                       @RequestParam(required = false) String password,
+                                                       @RequestParam(required = false) String verificationCode) {
+        return this.studentsServiceImpl.universalSearch(id, name, email, status, password, verificationCode);
+    }
 }

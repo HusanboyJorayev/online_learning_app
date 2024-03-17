@@ -3,6 +3,7 @@ package com.example.online_learning_app.serviceimpl;
 import com.example.online_learning_app.dto.ApiResponse;
 import com.example.online_learning_app.dto.ClassStudentsDto;
 import com.example.online_learning_app.dto.StudentsDto;
+import com.example.online_learning_app.entity.Students;
 import com.example.online_learning_app.mapper.StudentsMapper;
 import com.example.online_learning_app.repository.StudentsRepository;
 import com.example.online_learning_app.service.StudentsService;
@@ -83,6 +84,25 @@ public class StudentsServiceImpl implements StudentsService {
                 .success(true)
                 .message("Ok")
                 .data("deleted successfully")
+                .build();
+    }
+
+    @Override
+    public ApiResponse<List<StudentsDto>> universalSearch(Integer id, String name,
+                                                          String email, String status,
+                                                          String password, String verificationCode) {
+
+        List<Students> studentsList = this.studentsRepository.universalSearch(id, name, email, status, password, verificationCode);
+        if (studentsList.isEmpty()) {
+            return ApiResponse.<List<StudentsDto>>builder()
+                    .code(-1)
+                    .message("they are not found")
+                    .build();
+        }
+        return ApiResponse.<List<StudentsDto>>builder()
+                .success(true)
+                .message("Ok")
+                .data(studentsList.stream().map(this.studentsMapper::toDto).toList())
                 .build();
     }
 
