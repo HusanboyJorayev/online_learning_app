@@ -31,6 +31,12 @@ public class AssignmentsController implements AssignmentsService {
     }
 
     @Override
+    @GetMapping("/getWithEntities/{id}")
+    public ApiResponse<AssignmentsDto> getWithAssigmentSubmissions(@PathVariable(name = "id") Integer id) {
+        return this.assignmentsServiceImpl.getWithAssigmentSubmissions(id);
+    }
+
+    @Override
     @PutMapping("/update/{id}")
     public ApiResponse<String> update(@RequestBody AssignmentsDto dto, @PathVariable(name = "id") Integer id) {
         return this.assignmentsServiceImpl.update(dto, id);

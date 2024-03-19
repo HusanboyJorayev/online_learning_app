@@ -28,6 +28,12 @@ public class TeachersController implements TeachersService {
     }
 
     @Override
+    @GetMapping("/getWithEntities/{id}")
+    public ApiResponse<TeachersDto> getWithEntities(@PathVariable(name = "id") Integer id) {
+        return this.teachersServiceImpl.getWithEntities(id);
+    }
+
+    @Override
     @PutMapping("/update/{id}")
     public ApiResponse<String> update(@RequestBody TeachersDto dto, @PathVariable(name = "id") Integer id) {
         return this.teachersServiceImpl.update(dto, id);

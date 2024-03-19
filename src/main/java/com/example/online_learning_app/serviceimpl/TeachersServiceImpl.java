@@ -48,6 +48,23 @@ public class TeachersServiceImpl implements TeachersService {
     }
 
     @Override
+    public ApiResponse<TeachersDto> getWithEntities(Integer id) {
+        var teachers = this.teachersRepository.findByIdAndDeletedAtIsNull(id);
+        if (teachers.isEmpty()) {
+            return ApiResponse.<TeachersDto>builder()
+                    .code(-1)
+                    .message("It is not found")
+                    .build();
+        }
+        var teachersS = teachers.get();
+        return ApiResponse.<TeachersDto>builder()
+                .success(true)
+                .message("Ok")
+                .data(this.teachersMapper.toDtoWithEntities(teachersS))
+                .build();
+    }
+
+    @Override
     public ApiResponse<String> update(TeachersDto dto, Integer id) {
         var teachers = this.teachersRepository.findByIdAndDeletedAtIsNull(id);
         if (teachers.isEmpty()) {

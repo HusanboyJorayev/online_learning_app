@@ -15,6 +15,7 @@ public interface TeachersService {
     ApiResponse<String> create(TeachersDto dto);
 
     ApiResponse<TeachersDto> get(Integer id);
+    ApiResponse<TeachersDto> getWithEntities(Integer id);
 
     ApiResponse<String> update(TeachersDto dto, Integer id);
 

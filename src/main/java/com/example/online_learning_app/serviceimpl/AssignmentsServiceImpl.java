@@ -48,6 +48,23 @@ public class AssignmentsServiceImpl implements AssignmentsService {
     }
 
     @Override
+    public ApiResponse<AssignmentsDto> getWithAssigmentSubmissions(Integer id) {
+        var assigment = this.assignmentsRepository.findByIdAndDeletedAtIsNull(id);
+        if (assigment.isEmpty()) {
+            return ApiResponse.<AssignmentsDto>builder()
+                    .code(-1)
+                    .message("It is not found")
+                    .build();
+        }
+        var assigmentS = assigment.get();
+        return ApiResponse.<AssignmentsDto>builder()
+                .success(true)
+                .message("Ok")
+                .data(this.assignmentsMapper.toDtoWithAssigmentSubmissions(assigmentS))
+                .build();
+    }
+
+    @Override
     public ApiResponse<String> update(AssignmentsDto dto, Integer id) {
         var assigment = this.assignmentsRepository.findByIdAndDeletedAtIsNull(id);
         if (assigment.isEmpty()) {

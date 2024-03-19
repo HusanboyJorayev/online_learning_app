@@ -49,6 +49,23 @@ public class StudentsServiceImpl implements StudentsService {
     }
 
     @Override
+    public ApiResponse<StudentsDto> getWithEntities(Integer id) {
+        var students = this.studentsRepository.findByIdAndDeletedAtIsNull(id);
+        if (students.isEmpty()) {
+            return ApiResponse.<StudentsDto>builder()
+                    .code(-1)
+                    .message("It is not found")
+                    .build();
+        }
+        var studentsS = students.get();
+        return ApiResponse.<StudentsDto>builder()
+                .success(true)
+                .message("Ok")
+                .data(this.studentsMapper.toDtoWithEntities(studentsS))
+                .build();
+    }
+
+    @Override
     public ApiResponse<String> update(StudentsDto dto, Integer id) {
         var students = this.studentsRepository.findByIdAndDeletedAtIsNull(id);
         if (students.isEmpty()) {

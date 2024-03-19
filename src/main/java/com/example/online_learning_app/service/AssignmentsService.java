@@ -15,6 +15,7 @@ public interface AssignmentsService {
     ApiResponse<String> create(AssignmentsDto dto);
 
     ApiResponse<AssignmentsDto> get(Integer id);
+    ApiResponse<AssignmentsDto> getWithAssigmentSubmissions(Integer id);
 
     ApiResponse<String> update(AssignmentsDto dto, Integer id);
 

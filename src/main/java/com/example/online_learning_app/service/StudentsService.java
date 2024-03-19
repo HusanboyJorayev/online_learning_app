@@ -16,6 +16,7 @@ public interface StudentsService {
     ApiResponse<String> create(StudentsDto dto);
 
     ApiResponse<StudentsDto> get(Integer id);
+    ApiResponse<StudentsDto> getWithEntities(Integer id);
 
     ApiResponse<String> update(StudentsDto dto, Integer id);
 

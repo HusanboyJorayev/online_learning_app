@@ -47,6 +47,23 @@ public class ClassesServiceImpl implements ClassesService {
     }
 
     @Override
+    public ApiResponse<ClassesDto> getWithAllEntities(Integer id) {
+        var classes = this.classesRepository.findByIdAndDeletedAtIsNull(id);
+        if (classes.isEmpty()) {
+            return ApiResponse.<ClassesDto>builder()
+                    .code(-1)
+                    .message("It is not found")
+                    .build();
+        }
+        var classesS = classes.get();
+        return ApiResponse.<ClassesDto>builder()
+                .success(true)
+                .message("Ok")
+                .data(this.classesMapper.toDtoWithAllEntities(classesS))
+                .build();
+    }
+
+    @Override
     public ApiResponse<String> update(ClassesDto dto, Integer id) {
         var classes = this.classesRepository.findByIdAndDeletedAtIsNull(id);
         if (classes.isEmpty()) {

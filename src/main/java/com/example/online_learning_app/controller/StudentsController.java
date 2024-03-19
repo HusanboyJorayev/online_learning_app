@@ -26,6 +26,11 @@ public class StudentsController implements StudentsService {
     public ApiResponse<StudentsDto> get(@PathVariable(name = "id") Integer id) {
         return this.studentsServiceImpl.get(id);
     }
+    @Override
+    @GetMapping("/getWithEntities/{id}")
+    public ApiResponse<StudentsDto> getWithEntities(@PathVariable(name = "id") Integer id) {
+        return this.studentsServiceImpl.getWithEntities(id);
+    }
 
     @Override
     @PutMapping("/update/{id}")
