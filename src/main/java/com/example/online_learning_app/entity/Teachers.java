@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,7 +23,11 @@ public class Teachers {
     private String status;
     private String verificationCode;
     private String profileImage;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private LocalDateTime deletedAt;
+
+    @OneToMany(mappedBy = "teacherId",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private List<Classes>classes;
 }

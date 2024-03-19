@@ -20,6 +20,7 @@ public class ClassStudents {
     private Integer studentId;
     private LocalDateTime classTime;
     private Integer visitCount;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private LocalDateTime deletedAt;

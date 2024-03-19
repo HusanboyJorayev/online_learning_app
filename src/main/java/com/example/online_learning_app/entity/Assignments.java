@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,7 +23,11 @@ public class Assignments {
     private String correctOption;
     private LocalDateTime deadLine;
     private String attachment;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private LocalDateTime deletedAt;
+
+    @OneToMany(mappedBy = "assigmentId",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private List<AssigmentSubmissions>assigmentSubmissions;
 }

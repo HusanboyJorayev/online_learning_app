@@ -1,10 +1,13 @@
 package com.example.online_learning_app.dto;
 
+import com.example.online_learning_app.entity.AssigmentSubmissions;
+import com.example.online_learning_app.entity.ClassStudents;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,7 +24,11 @@ public class StudentsDto {
     private String status;
     private String verificationCode;
     private String profileImage;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private LocalDateTime deletedAt;
+
+    private List<AssigmentSubmissionsDto>assigmentSubmissions;
+    private List<ClassStudentsDto> classStudents;
 }

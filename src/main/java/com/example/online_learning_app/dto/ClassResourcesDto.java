@@ -18,6 +18,7 @@ public class ClassResourcesDto {
     private Integer classId;
     private String name;
     private String url;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private LocalDateTime deletedAt;
