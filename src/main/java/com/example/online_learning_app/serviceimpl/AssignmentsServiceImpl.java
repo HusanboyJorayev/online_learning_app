@@ -22,6 +22,7 @@ public class AssignmentsServiceImpl implements AssignmentsService {
     public ApiResponse<String> create(AssignmentsDto dto) {
         var assigment = this.assignmentsMapper.toEntity(dto);
         assigment.setCreatedAt(LocalDateTime.now());
+        assigment.setDeadLine(LocalDateTime.now());
         this.assignmentsRepository.save(assigment);
         return ApiResponse.<String>builder()
                 .success(true)

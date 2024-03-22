@@ -10,6 +10,7 @@ import java.util.List;
 @Setter
 @Builder
 @Entity
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "assignments")
